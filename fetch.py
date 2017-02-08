@@ -41,18 +41,28 @@ opener.add_handler(ChangeTypeProcessor())
 
 opener.addheaders.append(('Referer', 'http://www.hornbach.de/shop/raus-damit/artikelliste.html?rd=m'))
 
+# Cookie(version, name, value, port, port_specified, domain,
+# domain_specified, domain_initial_dot, path, path_specified,
+# secure, expires, discard, comment, comment_url, rest, rfc2109=False)
+#c_conf = cookielib.Cookie(0, 'CookieConfirmation', 'confirmed', None, False, 'www.hornbach.de', False, False, '/', True, False, 3634071505, False, None, None, None, False)
+#c_en   = cookielib.Cookie(0, 'cookiesEnabled', '1486588229862', None, False, 'www.hornbach.de', False, False, '/', True, False, 3634071505, False, None, None, None, False)
 
 
-#market
-print opener.open(url_market).read()
-cj._cookies['www.hornbach.de']['/']['hbMarketCookie'].value = '631'
-print cj._cookies
-print opener.open(url_market).read()
-print cj._cookies['www.hornbach.de']['/']['hbMarketCookie'].value
+# WORKING: set market cookie for ulm
+c_hbmark = cookielib.Cookie(0, 'hbMarketCookie', '631', None, False, 'www.hornbach.de', False, False, '/', True, False, 3634071505, False, None, None, None, False)
+cj.set_cookie(c_hbmark)
+
+
+#print opener.open(url_hp).read()
+
+
+#print cj._cookies
+#print opener.open(url_market).read()
+#print cj._cookies['www.hornbach.de']['/']['hbMarketCookie'].value
 
 #print opener.open(url_products).read()
 
 #opener.open(url_hp)
 
-#print opener.open(url_products, post_data).read()
+print opener.open(url_products, post_data).read()
 
