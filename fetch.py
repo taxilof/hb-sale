@@ -1,11 +1,13 @@
+# -*- coding: utf8 -*-
 import cookielib
 import urllib2
 import urllib
+import json
 
 
 url_hp = "http://www.hornbach.de"
 url_products = "http://www.hornbach.de/mvc/sellout/load-search-results/m.json?_=1486415327126"
-post_data = '{"categoryPath":"","pageNumber":2,"pageSize":72,"sortOrder":"sortModePriceDesc","searchVersion":2,"filters":[]}'
+post_data = '{"categoryPath":"","pageNumber":0,"pageSize":500,"sortOrder":"sortModePriceAsc","searchVersion":2,"filters":[]}'
 
 url_market = "http://www.hornbach.de/mvc/market/current-market?_=1486416807490"
 
@@ -51,18 +53,23 @@ opener.addheaders.append(('Referer', 'http://www.hornbach.de/shop/raus-damit/art
 # WORKING: set market cookie for ulm
 c_hbmark = cookielib.Cookie(0, 'hbMarketCookie', '631', None, False, 'www.hornbach.de', False, False, '/', True, False, 3634071505, False, None, None, None, False)
 cj.set_cookie(c_hbmark)
-
-
-#print opener.open(url_hp).read()
-
-
-#print cj._cookies
-#print opener.open(url_market).read()
-#print cj._cookies['www.hornbach.de']['/']['hbMarketCookie'].value
+# show market id:
+# print cj._cookies['www.hornbach.de']['/']['hbMarketCookie'].value
 
 #print opener.open(url_products).read()
 
 #opener.open(url_hp)
 
-print opener.open(url_products, post_data).read()
+response = opener.open(url_products, post_data)
+products_json = response.read()
+#print products_json
+products_data = json.loads(products_json)
+for article in products_data['articles']:
+    code = article['articleCode']
+    title = article['title']
+    price = article['allPrices']['displayPrice']['price']
+    img_url = article['imageUrl']
+    link = article['localizedExternalArticleLink']
+    #print  title + ": " + price + " " + link
+    print "<a target='_blank' href='http://www.hornbach.de/"+link+"?rd=m'><img src='http://www.hornbach.de/"+ img_url+"'> "+price+"E </a><br>"
 
