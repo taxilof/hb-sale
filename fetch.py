@@ -17,12 +17,12 @@ url_market = "http://www.hornbach.de/mvc/market/current-market?_=1486416807490"
 # ulm 631
 # neu ulm 536
 values = {
-	"categoryPath": "",
-	"pageNumber": 2,
-	"pageSize": 72,
-	"sortOrder": "sortModePriceDesc",
-	"searchVersion": 2,
-	"filters": []
+"categoryPath": "",
+"pageNumber": 2,
+"pageSize": 72,
+"sortOrder": "sortModePriceDesc",
+"searchVersion": 2,
+"filters": []
 }
 
 
@@ -59,17 +59,18 @@ cj.set_cookie(c_hbmark)
 #print opener.open(url_products).read()
 
 #opener.open(url_hp)
-
-response = opener.open(url_products, post_data)
-products_json = response.read()
-#print products_json
-products_data = json.loads(products_json)
-for article in products_data['articles']:
-    code = article['articleCode']
-    title = article['title']
-    price = article['allPrices']['displayPrice']['price']
-    img_url = article['imageUrl']
-    link = article['localizedExternalArticleLink']
-    #print  title + ": " + price + " " + link
-    print "<a target='_blank' href='http://www.hornbach.de/"+link+"?rd=m'><img src='http://www.hornbach.de/"+ img_url+"'> "+price+"E </a><br>"
+for i in range(14):
+    post_data = '{"categoryPath":"","pageNumber":'+str(i)+',"pageSize":500,"sortOrder":"sortModePriceAsc","searchVersion":2,"filters":[]}'
+    response = opener.open(url_products, post_data)
+    products_json = response.read()
+    #print products_json
+    products_data = json.loads(products_json)
+    for article in products_data['articles']:
+        code = article['articleCode']
+        title = article['title']
+        price = article['allPrices']['displayPrice']['price']
+        img_url = article['imageUrl']
+        link = article['localizedExternalArticleLink']
+        #print  title + ": " + price + " " + link
+        print "<a target='_blank' href='http://www.hornbach.de/"+link+"?rd=m'><img src='http://www.hornbach.de/"+ img_url+"'> "+price+"E </a><br>"
 
