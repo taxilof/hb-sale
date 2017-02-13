@@ -1,0 +1,187 @@
+url:
+http://www.hornbach.de/mvc/sellout/displaystates-and-prices/m
+
+request:
+["8024383","8024382","8024381","7572948","6142348","6142346","8832513","8425864"]
+
+
+
+
+response:
+[{
+	"displayStatusDV": null,
+	"displayStatusMarket": "15",
+	"allPrices": {
+		"bracketPrice": null,
+		"displayPrice": {
+			"currency": "€",
+			"unit": "ST",
+			"price": "34,00",
+			"unitDisplayString": "ST"
+		},
+		"minScalePrice": null,
+		"guidingPrice": null,
+		"priceCalculation": null,
+		"originalPriceInSellout": {
+			"currency": "€",
+			"unit": "ST",
+			"price": "49,95",
+			"unitDisplayString": "ST"
+		}
+	},
+	"articleCode": "6142346"
+}, {
+	"displayStatusDV": null,
+	"displayStatusMarket": "15",
+	"allPrices": {
+		"bracketPrice": null,
+		"displayPrice": {
+			"currency": "€",
+			"unit": "ST",
+			"price": "34,00",
+			"unitDisplayString": "ST"
+		},
+		"minScalePrice": null,
+		"guidingPrice": null,
+		"priceCalculation": null,
+		"originalPriceInSellout": {
+			"currency": "€",
+			"unit": "ST",
+			"price": "49,95",
+			"unitDisplayString": "ST"
+		}
+	},
+	"articleCode": "6142348"
+}, {
+	"displayStatusDV": null,
+	"displayStatusMarket": "15",
+	"allPrices": {
+		"bracketPrice": null,
+		"displayPrice": {
+			"currency": "€",
+			"unit": "ST",
+			"price": "35,00",
+			"unitDisplayString": "ST"
+		},
+		"minScalePrice": null,
+		"guidingPrice": null,
+		"priceCalculation": null,
+		"originalPriceInSellout": {
+			"currency": "€",
+			"unit": "ST",
+			"price": "78,12",
+			"unitDisplayString": "ST"
+		}
+	},
+	"articleCode": "7572948"
+}, {
+	"displayStatusDV": null,
+	"displayStatusMarket": "15",
+	"allPrices": {
+		"bracketPrice": null,
+		"displayPrice": {
+			"currency": "€",
+			"unit": "ST",
+			"price": "35,00",
+			"unitDisplayString": "ST"
+		},
+		"minScalePrice": null,
+		"guidingPrice": null,
+		"priceCalculation": null,
+		"originalPriceInSellout": {
+			"currency": "€",
+			"unit": "ST",
+			"price": "73,95",
+			"unitDisplayString": "ST"
+		}
+	},
+	"articleCode": "8024381"
+}, {
+	"displayStatusDV": null,
+	"displayStatusMarket": "15",
+	"allPrices": {
+		"bracketPrice": null,
+		"displayPrice": {
+			"currency": "€",
+			"unit": "ST",
+			"price": "35,00",
+			"unitDisplayString": "ST"
+		},
+		"minScalePrice": null,
+		"guidingPrice": null,
+		"priceCalculation": null,
+		"originalPriceInSellout": {
+			"currency": "€",
+			"unit": "ST",
+			"price": "73,95",
+			"unitDisplayString": "ST"
+		}
+	},
+	"articleCode": "8024382"
+}, {
+	"displayStatusDV": null,
+	"displayStatusMarket": "15",
+	"allPrices": {
+		"bracketPrice": null,
+		"displayPrice": {
+			"currency": "€",
+			"unit": "ST",
+			"price": "35,00",
+			"unitDisplayString": "ST"
+		},
+		"minScalePrice": null,
+		"guidingPrice": null,
+		"priceCalculation": null,
+		"originalPriceInSellout": {
+			"currency": "€",
+			"unit": "ST",
+			"price": "73,95",
+			"unitDisplayString": "ST"
+		}
+	},
+	"articleCode": "8024383"
+}, {
+	"displayStatusDV": null,
+	"displayStatusMarket": "15",
+	"allPrices": {
+		"bracketPrice": null,
+		"displayPrice": {
+			"currency": "€",
+			"unit": "ST",
+			"price": "30,00",
+			"unitDisplayString": "ST"
+		},
+		"minScalePrice": null,
+		"guidingPrice": null,
+		"priceCalculation": null,
+		"originalPriceInSellout": {
+			"currency": "€",
+			"unit": "ST",
+			"price": "69,90",
+			"unitDisplayString": "ST"
+		}
+	},
+	"articleCode": "8425864"
+}, {
+	"displayStatusDV": null,
+	"displayStatusMarket": "15",
+	"allPrices": {
+		"bracketPrice": null,
+		"displayPrice": {
+			"currency": "€",
+			"unit": "ST",
+			"price": "30,00",
+			"unitDisplayString": "ST"
+		},
+		"minScalePrice": null,
+		"guidingPrice": null,
+		"priceCalculation": null,
+		"originalPriceInSellout": {
+			"currency": "€",
+			"unit": "ST",
+			"price": "69,95",
+			"unitDisplayString": "ST"
+		}
+	},
+	"articleCode": "8832513"
+}]
