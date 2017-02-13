@@ -3,7 +3,7 @@ import http.cookiejar
 #import urllib.request
 import urllib
 import json
-
+from operator import attrgetter
 
 url_hp = "http://www.hornbach.de"
 url_products = "http://www.hornbach.de/mvc/sellout/load-search-results/m.json?_=1486415327126"
@@ -39,11 +39,13 @@ class ChangeTypeProcessor(urllib.request.BaseHandler):
 class Article:
     code = 0
     title = ''
-    price_display = ''
+    price_display = 0
     img_url = ''
     link = ''
     def __str__(self):
         return self.code + " " + self.title
+    def __repr__(self):
+        return repr((self.name, self.grade, self.age))
     
 article_db = []
     
@@ -70,30 +72,27 @@ cj.set_cookie(c_hbmark)
 
 #opener.open(url_hp)
 title_old = ''
-for i in range(1,13):
+for i in range(1,14):
     post_data = '{"categoryPath":"","pageNumber":'+str(i)+',"pageSize":500,"sortOrder":"sortModePriceAsc","searchVersion":2,"filters":[]}'
     response = opener.open(url_products, bytearray(post_data,'utf-8'))
     products_json = response.read().decode('utf8')
     #print products_json
     products_data = json.loads(products_json)
     for article in products_data['articles']:
-        code = article['articleCode']
-        title = article['title']
-        price = article['allPrices']['displayPrice']['price']
-        img_url = article['imageUrl']
-        link = article['localizedExternalArticleLink']
-        #print  title + ": " + price + " " + link
-        if (title_old[0:5] == title[0:5]):
-            br = ""
-        else:
-            br = "<br>"
-        title_old = title
-        print(br+"<a target='_blank' href='http://www.hornbach.de/"+link+"?rd=m'><img src='http://www.hornbach.de/"+ img_url+"'> "+price+"E </a>")
-        
-        art = Article()
-        art.code = code
-        art.title = title
-        art.img_url = img_url
+        art = Article()    
+        art.code = article['articleCode']
+        art.title = article['title']
+        art.price_display = int(article['allPrices']['displayPrice']['price'].replace(',',''))
+        art.img_url = article['imageUrl']
+        art.link = article['localizedExternalArticleLink']
         article_db.append(art)
         
+article_db_sort = sorted(article_db, key=attrgetter('price_display', 'title'))
 
+for art in article_db_sort:
+    if (title_old[0:5] == art.title[0:5]):
+        br = ""
+    else:
+        br = "<br>"
+    title_old = art.title
+    print(br+"<a target='_blank' href='http://www.hornbach.de/"+art.link+"?rd=m'><img src='http://www.hornbach.de/"+ art.img_url+"'> "+str(art.price_display)+"E </a>\r\n")
