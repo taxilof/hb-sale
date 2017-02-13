@@ -69,7 +69,8 @@ cj.set_cookie(c_hbmark)
 #print opener.open(url_products).read()
 
 #opener.open(url_hp)
-for i in range(1,2):
+title_old = ''
+for i in range(1,13):
     post_data = '{"categoryPath":"","pageNumber":'+str(i)+',"pageSize":500,"sortOrder":"sortModePriceAsc","searchVersion":2,"filters":[]}'
     response = opener.open(url_products, bytearray(post_data,'utf-8'))
     products_json = response.read().decode('utf8')
@@ -82,7 +83,12 @@ for i in range(1,2):
         img_url = article['imageUrl']
         link = article['localizedExternalArticleLink']
         #print  title + ": " + price + " " + link
-        print("<a target='_blank' href='http://www.hornbach.de/"+link+"?rd=m'><img src='http://www.hornbach.de/"+ img_url+"'> "+price+"E </a><br>\r\n")
+        if (title_old[0:5] == title[0:5]):
+            br = ""
+        else:
+            br = "<br>"
+        title_old = title
+        print(br+"<a target='_blank' href='http://www.hornbach.de/"+link+"?rd=m'><img src='http://www.hornbach.de/"+ img_url+"'> "+price+"E </a>")
         
         art = Article()
         art.code = code
