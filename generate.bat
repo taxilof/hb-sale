@@ -1,0 +1,1 @@
+python fetch.py > full.html
