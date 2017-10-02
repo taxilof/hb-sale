@@ -4,6 +4,7 @@ import http.cookiejar
 import urllib
 import json
 from operator import attrgetter
+import sys
 
 url_hp = "https://www.hornbach.de"
 url_products = "https://www.hornbach.de/mvc/sellout/load-search-results/m.json?_=1506789419698"
@@ -11,19 +12,15 @@ post_data = '{"categoryPath":"","pageNumber":0,"pageSize":500,"sortOrder":"sortM
 
 url_market = "https://www.hornbach.de/mvc/market/current-market?_=1486416807490"
 
-
+if ( len(sys.argv) > 1 ):
+    market_code  = sys.argv[1]
+else:
+    market_code = 631 # ulm
 
 # markets cj._cookies['www.hornbach.de']['/']['hbMarketCookie'].value
 # ulm 631
 # neu ulm 536
-values = {
-"categoryPath": "",
-"pageNumber": 2,
-"pageSize": 72,
-"sortOrder": "sortModePriceDesc",
-"searchVersion": 2,
-"filters": []
-}
+
 
 
 
@@ -63,7 +60,7 @@ opener.addheaders.append(('Referer', 'https://www.hornbach.de/shop/raus-damit/ar
 
 
 # WORKING: set market cookie for ulm
-c_hbmark = http.cookiejar.Cookie(0, 'hbMarketCookie', '631', None, False, 'www.hornbach.de', False, False, '/', True, True, 3634071505, False, None, None, None, False)
+c_hbmark = http.cookiejar.Cookie(0, 'hbMarketCookie', str(market_code), None, False, 'www.hornbach.de', False, False, '/', True, True, 3634071505, False, None, None, None, False)
 cj.set_cookie(c_hbmark)
 # show market id:
 #print (cj._cookies['www.hornbach.de']['/']['hbMarketCookie'])
@@ -97,4 +94,4 @@ for art in article_db_sort:
     else:
         br = "<br>"
     title_old = art.title
-    print(br+"<a target='_blank' href='http://www.hornbach.de/"+art.link+"?rd=m'><img src='http://www.hornbach.de/"+ art.img_url+"'> "+str(art.price_display)+"E </a>\r\n")
+    print(br+"<a target='_blank' href='https://www.hornbach.de/"+art.link+"?rd=m'><img src='https://www.hornbach.de/"+ art.img_url+"'> "+str(art.price_display)+"E </a>\r\n")
